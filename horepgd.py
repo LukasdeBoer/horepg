@@ -77,7 +77,10 @@ def run_import(wanted_channels, tvhsocket, fetch_radio=False, nr_days=5):
                 icon = None
                 for asset in channel['images']:
                     if asset['assetType'] == 'station-logo-large':
-                        icon = asset['url']
+                        if asset['url'].contains("images") and asset['url'].contains("?"):
+                            icon = asset['url'].split("?")[0]
+                        else:
+                            icon = asset['url']
                         break
                 xmltv.addChannel(channel_id, channel['title'], icon)
                 for i in range(0, nr_days):
