@@ -77,7 +77,7 @@ def run_import(wanted_channels, tvhsocket, fetch_radio=False, nr_days=5):
                 icon = None
                 for asset in channel['images']:
                     if asset['assetType'] == 'station-logo-large':
-                        if asset['url'].contains("images") and asset['url'].contains("?"):
+                        if "images" in asset['url'] and "?" in asset['url']:
                             icon = asset['url'].split("?")[0]
                         else:
                             icon = asset['url']
